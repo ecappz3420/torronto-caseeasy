@@ -1,5 +1,7 @@
+import { Drawer } from 'flowbite-react';
 import React, { useState } from 'react'
-import {  Modal, ModalContent } from 'semantic-ui-react'
+import { Modal, ModalContent } from 'semantic-ui-react'
+import ChatMessage from './ChatMessage';
 const Profile = () => {
     const [open, setOpen] = useState(false);
     const [openProfileModal, setOpenProfileModal] = useState(false);
@@ -36,7 +38,7 @@ const Profile = () => {
                                 <div className='text-center text-sm mt-2'>Supported formats: <br /> JPG/JPEG, PNG</div>
                                 <div className='text-center text-md mt-3'>Click to Upload your Image</div>
                                 <div className='mt-[30px] text-end'>
-                                    <button onClick={()=> setOpenProfileModal(false)} className='text-blue-600 p-2 rounded hover:bg-blue-50'>Close</button>
+                                    <button onClick={() => setOpenProfileModal(false)} className='text-blue-600 p-2 rounded hover:bg-blue-50'>Close</button>
                                 </div>
                             </ModalContent>
                         </Modal>
@@ -47,12 +49,18 @@ const Profile = () => {
                     <div className='text-sm font-semibold'>Marital Status: <span className='font-normal'>Never Married/Single  </span><span className='text-sm font-semibold'>Date of Birth: <span className='font-normal'>Sep 4 2000</span></span><small className='bg-blue-600 p-1 rounded-xl text-white font-semibold text-[10px] ms-2'>AGE:24</small></div>
                     <div className='text-sm font-semibold'>Country of Residence: <span className='font-normal'>Canada   </span><span className='text-sm font-semibold'>Client ID: <span className='font-normal'>KP-2</span></span></div>
                     <div className='flex gap-[30px] my-3'>
-                        <div className='flex justify-center flex-col items-center'>
+                        <div className='flex justify-center flex-col items-center' onClick={()=>setOpen(true)}>
                             <div className='flex justify-center p-2 rounded-full bg-white hover:bg-blue-100 cursor-pointer transition-all'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler text-blue-500 icons-tabler-outline icon-tabler-messages"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" /><path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" /></svg>
                             </div>
                             <div className='text-xs text-blue-600'>Chat</div>
                         </div>
+                        <Drawer open={open} position='right' className='w-[700px]' onClose={()=>setOpen(false)}>
+                            <Drawer.Header/>
+                            <Drawer.Items>
+                                <ChatMessage />
+                            </Drawer.Items>
+                        </Drawer>
                         <div className='flex justify-center flex-col items-center'>
                             <div className='flex justify-center p-2 rounded-full bg-white hover:bg-blue-100 cursor-pointer transition-all'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icons-tabler-outline icon-tabler-mail text-blue-500"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" /><path d="M3 7l9 6l9 -6" /></svg>
