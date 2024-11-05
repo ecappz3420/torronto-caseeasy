@@ -1,26 +1,30 @@
-import { Dropdown, DropdownItem } from 'flowbite-react'
+import { Drawer, DrawerHeader, DrawerItems, Dropdown, DropdownItem } from 'flowbite-react'
 import React, { useState } from 'react'
 import { Search } from 'semantic-ui-react'
+import ChatMessage from './ChatMessage';
 
 const Chat = () => {
-    const [type, setType] = useState("");
     const [chatActive, setChatActive] = useState(false);
     const [emailActive, setEmailActive] = useState(false);
     const [smsActive, setSmsActive] = useState(false);
+    const [visible, setVisible] = useState(false);
 
     const active = "bg-blue-600 text-white";
-    const handleCLick = (e) => {
-        e.target.classList.add("bg-blue-600 text-white")
-    }
     return (
         <div className='p-2'>
             <div className="flex justify-between mt-3">
                 <Search placeholder='Type to Filter' />
                 <Dropdown label='Send Communications' color='blue' >
-                    <DropdownItem><i className="bi bi-chat mr-2"></i> Chat</DropdownItem>
+                    <DropdownItem onClick={()=>setVisible(true)}><i className="bi bi-chat mr-2"></i> Chat</DropdownItem>
                     <DropdownItem><i className="bi bi-envelope mr-2"></i>Email</DropdownItem>
                     <DropdownItem><i className="bi bi-phone mr-2"></i>SMS</DropdownItem>
                 </Dropdown>
+                <Drawer open={visible} position='right' className='w-[700px]' onClose={()=>setVisible(false)}>
+                    <DrawerHeader/>
+                    <DrawerItems>
+                        <ChatMessage/>
+                    </DrawerItems>
+                </Drawer>
             </div>
             <div className="mt-3 box-shadow border h-[600px] rounded p-4">
                 <div className='mb-5'>

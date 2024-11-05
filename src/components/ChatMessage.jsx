@@ -8,8 +8,7 @@ const ChatMessage = () => {
   return (
     <div className='border p-2 gap-6 flex flex-col justify-between'>
       <FroalaEditorComponent tag='textarea' config={{
-        heightMin: 400,  
-        heightMax: 600,  
+        heightMin: 300,  
       }} />
       <div>
         <Button size='sm' color='blue'>Send</Button>
